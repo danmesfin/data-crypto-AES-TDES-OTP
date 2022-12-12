@@ -1,43 +1,6 @@
 // @ts-nocheck
-import { useState } from 'react';
-import Head from 'next/head'
-import * as CryptoJS from 'crypto-js';
+import Head from "next/head";
 export default function Home() {
-const {text, setText} = useState(null);
-const {key,setKey} = useState(null);
-const {encryptedBase64,setEncryptedText} = useState(null);
-
-
-
-  
- const encryptAES = (text, key) => {
-    return CryptoJS.AES.encrypt(text, key).toString();
-  };
- 
- const decryptAES = (encryptedBase64, key) => {
-    const decrypted = CryptoJS.AES.decrypt(encryptedBase64, key);
-    if (decrypted) {
-      try {
-        console.log(decrypted);
-        const str = decrypted.toString(CryptoJS.enc.Utf8);
-        if (str.length > 0) {
-          return str;
-        } else {
-          return 'error 1';
-        } 
-      } catch (e) {
-        return 'error 2';
-      }
-    }
-    return 'error 3';
-  };
-
-  const encryptInputText = () =>{
-     setEncryptedText(encryptAES(text,key));
-  }
- const decryptInputText = (event) => {
-
-  }
   return (
     <div className="container mx-0">
       <Head>
@@ -47,42 +10,56 @@ const {encryptedBase64,setEncryptedText} = useState(null);
       </Head>
 
       <main className="flex flex-col">
-        <div className='flex justify-between shadow-sm border-b py-1'>
-        <div className='font-bold text-3xl text-blue-700'>Crypto-app</div>
-        <div className='font-semibold p-1 mx-2 text-sm text-blue-700'>github</div>
+        <div className="flex justify-between shadow-sm border-b py-1">
+          <div className="font-bold text-3xl text-blue-700">Crypto-app</div>
+          <div className="font-semibold p-1 mx-2 text-sm text-blue-700">
+            github
+          </div>
         </div>
-       
-       <div className='flex flex-col mt-3 mx-10 p-10 bg-slate-300 text-black'>
-         <form action="" className='flex flex-col'>
+
+        <div className="flex flex-col mt-3 mx-10 p-10 bg-slate-300 text-black">
+          <form action="" className="flex flex-col">
             <div>
-             <label htmlFor="plain-text p-2">Input text</label>
-             <input type="text" className='bg-gray-50 mt-2 w-full p-2.5 h-24
-               border focus:ring-blue-500 focus:border-blue-500' />
+              <label htmlFor="plain-text p-2">Input text</label>
+              <input
+                type="text"
+                className="bg-gray-50 mt-2 w-full p-2.5 h-24
+               border focus:ring-blue-500 focus:border-blue-500"
+              />
             </div>
-            <div className='mt-2 p-1'>
-              <label htmlFor="key" className='ml-1'>Key</label>
-              <input type="text" name="key" id="key" className='ml-2' />
-              <label htmlFor="Algo" className='ml-3'>Algorithm</label>
+            <div className="mt-2 p-1">
+              <label htmlFor="key" className="ml-1">
+                Key
+              </label>
+              <input type="text" name="key" id="key" className="ml-2" />
+              <label htmlFor="Algo" className="ml-3">
+                Algorithm
+              </label>
               <select id="Algo" name="Algo">
                 <option value="OPT">OPT</option>
                 <option value="3DES">3DES</option>
                 <option value="AES">AES</option>
               </select>
             </div>
-            <button onClick={encryptInputText()} className='w-24 bg-blue-500 mx-auto mt-2 rounded hover:bg-blue-600'>Encrypt</button>
+            <button
+              onClick={encryptInputText()}
+              className="w-24 bg-blue-500 mx-auto mt-2 rounded hover:bg-blue-600"
+            >
+              Encrypt
+            </button>
           </form>
-          <div className='mt-5 p-2'>
+          <div className="mt-5 p-2">
             <label htmlFor="">{encryptedBase64}</label>
-            <div className='bg-gray-50 p-2 mt-2 w-full '>...Encrypted</div>
+            <div className="bg-gray-50 p-2 mt-2 w-full ">...Encrypted</div>
           </div>
-       </div>
-
-
+        </div>
       </main>
 
       <footer className="flex justify-center bg-blue-500">
-     <a className='text-gray-500' href='https://github.com/danmesfin' >Dan Mesfin</a>
+        <a className="text-gray-500" href="https://github.com/danmesfin">
+          Dan Mesfin
+        </a>
       </footer>
     </div>
-  )
+  );
 }

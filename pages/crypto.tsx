@@ -3,6 +3,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { encryptAES, decryptAES } from "../helpers/Des";
 import { encryptTDES, decryptTDES } from "../helpers/TripleDES";
+import { encryptOTP, decryptOTP } from "../helpers/OTP";
 
 function Crypto() {
   const [algorithm, setAlgorithm] = useState("AES");
@@ -28,15 +29,13 @@ function Crypto() {
         setEncryptedText(encryptTDES(text, key));
         break;
       case "OTP":
-        setEncryptedText(encryptTDES(text, key));
+        setEncryptedText(encryptOTP(text, key));
         break;
       default:
         break;
     }
   };
   const handleDecryption = () => {
-    //const decrText = decryptTDES(encTextInput, decKey);
-    //setDecryptedText(decrText);
     switch (decryptAlgorithm) {
       case "AES":
         setDecryptedText(decryptAES(encTextInput, decKey));
@@ -100,9 +99,9 @@ function Crypto() {
                 className="mt-2"
                 onChange={(event) => setAlgorithm(event.target.value)}
               >
-                <option value="OPT">OPT</option>
-                <option value="TripleDES">3DES</option>
                 <option value="AES">AES</option>
+                <option value="TripleDES">3DES</option>
+                <option value="OTP">OTP</option>
               </select>
             </div>
 
@@ -150,9 +149,9 @@ function Crypto() {
                 className="mt-2"
                 onChange={(event) => setDecryptionAlgorithm(event.target.value)}
               >
-                <option value="OPT">OPT</option>
-                <option value="TripleDES">3DES</option>
                 <option value="AES">AES</option>
+                <option value="TripleDES">3DES</option>
+                <option value="OTP">OTP</option>
               </select>
             </div>
 
