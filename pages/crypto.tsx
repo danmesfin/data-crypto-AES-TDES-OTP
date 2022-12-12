@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { encryptAES, decryptAES } from "../helpers/Des";
 import { encryptTDES, decryptTDES } from "../helpers/TripleDES";
 import { encryptOTP, decryptOTP } from "../helpers/OTP";
@@ -63,7 +64,11 @@ function Crypto() {
         <div className="flex justify-between shadow-sm border-b py-1">
           <div className="font-bold text-3xl text-blue-700">Crypto-app</div>
           <div className="font-semibold p-1 mx-2 text-sm text-blue-700">
-            github
+            <Link
+              href={"https://github.com/danmesfin/data-crypto-AES-TDES-OTP"}
+            >
+              github
+            </Link>
           </div>
         </div>
         <div className="flex flex-wrap md:flex-nowrap justify-center text-semibold my-10  ">
@@ -165,6 +170,7 @@ function Crypto() {
             <textarea
               className="font-semibold text-xl w-3/4 mx-auto mt-5 bg-gray-50 p-2"
               value={decryptedText}
+              readOnly="true"
             />
           </div>
         </div>
