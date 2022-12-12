@@ -1,9 +1,8 @@
 // @ts-nocheck
 import { useState } from "react";
 import Head from "next/head";
-import AES from "crypto-js/aes";
-import TripleDES from "crypto-js/tripledes";
-import { enc } from "crypto-js";
+import { encryptAES, decryptAES } from "../helpers/Des";
+import { encryptTDES, decryptTDES } from "../helpers/TripleDES";
 
 function Crypto() {
   const [algorithm, setAlgorithm] = useState("AES");
@@ -16,20 +15,11 @@ function Crypto() {
   const [decKey, setDecKey] = useState("");
   const [decryptedText, setDecryptedText] = useState("");
 
-  const encryptAES = (str: string | CryptoJS.lib.WordArray, key) => {
-    const ciphertext = AES.encrypt(str, key);
-    return ciphertext.toString();
-  };
-
   const handleInputChange = (event) => {
     setText(event.target.value);
-    // setEncryptedText(encryptId(event.target.value,key));
-    // const decrText = decryptId(encrypted, key);
-    //setDecryptedText(decrText);
   };
+
   const handleEncryption = () => {
-    //const encText = encryptTDES(text, key);
-    //setEncryptedText(encText);
     switch (algorithm) {
       case "AES":
         setEncryptedText(encryptAES(text, key));
@@ -60,20 +50,6 @@ function Crypto() {
       default:
         break;
     }
-  };
-
-  const decryptAES = (str, key) => {
-    // const decodedStr = decodeURIComponent(str);
-    return AES.decrypt(str, key).toString(enc.Utf8);
-  };
-
-  const encryptTDES = (str, key) => {
-    // const decodedStr = decodeURIComponent(str);
-    return TripleDES.encrypt(str, key);
-  };
-  const decryptTDES = (str, key) => {
-    // const decodedStr = decodeURIComponent(str);
-    return TripleDES.decrypt(str, key).toString(enc.Utf8);
   };
 
   return (
@@ -195,9 +171,9 @@ function Crypto() {
         </div>
       </main>
 
-      <footer className="flex h-48 justify-center bg-red-900">
+      <footer className="flex h-24 justify-center bg-red-900">
         <a
-          className="font-bold text-gray-900"
+          className="font-semibold text-gray-100"
           href="https://github.com/danmesfin"
         >
           Dan Mesfin
