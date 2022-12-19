@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { encryptAES, decryptAES } from "../helpers/Des";
+import { encryptAES, decryptAES } from "../helpers/AES";
 import { encryptTDES, decryptTDES } from "../helpers/TripleDES";
 import { encryptOTP, decryptOTP } from "../helpers/OTP";
 
