@@ -8,16 +8,15 @@ import { encryptOTP, decryptOTP } from "../helpers/OTP";
 
 export default function Crypto() {
   // encription state catcher
-  const [algorithm, setAlgorithm] = useState("AES"); //the algorithm used to encrypt the message
   const [text, setText] = useState(""); // an inupt message to be encrypted
-  const [encrypted, setEncryptedText] = useState(""); // result of encrypted message
+  const [algorithm, setAlgorithm] = useState("AES"); //the algorithm used to encrypt the message
   const [key, setKey] = useState(""); // encryption key
+  const [encrypted, setEncryptedText] = useState(""); // result of encrypted message
 
   // decryption state
   const [encTextInput, setEncTextInput] = useState("");
   const [decKey, setDecKey] = useState("");
-  //the algorithm used to decrypt the message
-  const [decryptAlgorithm, setDecryptionAlgorithm] = useState("AES");
+  const [decryptAlgorithm, setDecryptionAlgorithm] = useState("AES"); //the algorithm used to decrypt the message
   const [decryptedText, setDecryptedText] = useState("");
 
   // input text field handler
