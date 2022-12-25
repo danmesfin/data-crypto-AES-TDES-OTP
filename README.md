@@ -1,8 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+DataCrypto is a web based illustration/implementation of cryptography in secure message communication.
 
 ## Getting Started
 
-First, run the development server:
+First, Clone the repository:
+
+```bash
+git clone https://github.com/danmesfin/data-crypto-AES-TDES-OTP <YOUR PROJECT NAME>
+
+```
+
+cd YOUR PROJECT NAME and run:
+
+```bash
+npm install
+```
+
+then, run the development server:
 
 ```bash
 npm run dev

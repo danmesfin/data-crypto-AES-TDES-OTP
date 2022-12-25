@@ -1,27 +1,27 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import {
+  useSession,
+  signIn,
+  getSession,
+  GetSessionParams,
+} from "next-auth/react";
 
 function login() {
   const { data: session } = useSession();
 
   if (session) {
-    return (
-      <div className="flex flex-col mx-auto h-screen justify-center">
-        <img
-          src={session.user?.image}
-          className="h-12 w-12 rounded-full"
-          alt="profile_image"
-        />
-        <div>Welcome, {session.user?.email}</div>
-        <button onClick={() => signOut()}>Sign out</button>
-      </div>
-    );
+    return <p>Loading ...</p>;
   } else {
     return (
-      <div className="flex flex-col mx-auto h-screen justify-center">
-        <div className="flex flex-col justify-center border rounded-md mx-auto px-4 py-5 shadow">
-          <div className="text-md font-semibold mt-2">
-            You are not signed in
+      <div className="flex mx-auto justify-center h-screen">
+        <div className="w-1/2 bg-red-700 justify-center">
+          <div className="pl-10 text-7xl text-white mt-40 mx-auto font-extrabold">
+            Welcome to DataCrypto!
+          </div>
+        </div>
+        <div className="w-1/2 flex flex-col justify-center border rounded-md mx-auto px-4 py-5 shadow">
+          <div className="text-xl font-bold mt-2">
+            Please Sign-in to continue !
           </div>
           <button
             className="w-24 m-2 text-white bg-red-700 hover:bg-red-600 rounded-lg"
@@ -36,3 +36,21 @@ function login() {
 }
 
 export default login;
+
+export const getServerSideProps = async (
+  context: GetSessionParams | undefined
+) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+};
