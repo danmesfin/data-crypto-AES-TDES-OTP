@@ -6,7 +6,7 @@ import {
   GetSessionParams,
 } from "next-auth/react";
 
-function login() {
+function Login() {
   const { data: session } = useSession();
 
   if (session) {
@@ -35,7 +35,7 @@ function login() {
   }
 }
 
-export default login;
+export default Login;
 
 export const getServerSideProps = async (
   context: GetSessionParams | undefined
